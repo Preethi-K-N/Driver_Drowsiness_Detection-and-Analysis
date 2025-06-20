@@ -7,7 +7,7 @@ from scipy.spatial import distance as dist
 import simpleaudio as sa
 
 # ==== CONFIGURATION ====
-EAR_THRESHOLD = 0.3
+EAR_THRESHOLD = 0.25
 CONSEC_FRAMES = 48
 IMAGE_FOLDER = "image_clippings"
 ALARM_FILE = "alarm.wav"
