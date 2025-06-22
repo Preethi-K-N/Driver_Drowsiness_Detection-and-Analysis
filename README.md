@@ -39,7 +39,7 @@ SimpleAudio - 	Alarm playback
 
 - Media Pipe detects facial landmarks
 - EAR (Eye Aspect Ratio) is calculated from eye landmarks
-- If EAR < 0.3 for 48 consecutive frames, it is considered drowsiness
+- If EAR < 0.25 for 48 consecutive frames, it is considered drowsiness
 - A warning message is shown, an alarm sounds, and 3 images are saved
 - Data is logged for later analysis
 
@@ -51,7 +51,7 @@ It checks 20 consecutive frames and if the Eye Aspect ratio is less than 0.25, A
  👁 Eye Aspect Ratio Formula
 
  
- ![image](https://github.com/user-attachments/assets/21b619a9-56e9-47f6-bc3b-f5003fd84880)
+![image](https://github.com/user-attachments/assets/21b619a9-56e9-47f6-bc3b-f5003fd84880)
 ![image](https://github.com/user-attachments/assets/fcee91f5-efc8-4d08-b6c8-ec621e74b518)
 ![image](https://github.com/user-attachments/assets/0cc55a1a-4f92-40e4-8e3e-1a3bd5e05845)
 
@@ -75,6 +75,7 @@ python detector.py
 
  📌 Cite Us
 
+Here's how to cite the project:
 @article{Driver_Drowsiness_Detection and Analysis,
 author = {Preethi K.N},
 journal = {https://github.com/preethikn/driver-drowsiness-detection},
