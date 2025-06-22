@@ -8,7 +8,7 @@ import simpleaudio as sa
 
 # ==== CONFIGURATION ====
 EAR_THRESHOLD = 0.30
-CONSEC_FRAMES = 48
+CONSEC_FRAMES = 38
 IMAGE_FOLDER = "image_clippings"
 ALARM_FILE = "alarm.wav"
 NUM_IMAGES = 3  # Capture this many images per alert
