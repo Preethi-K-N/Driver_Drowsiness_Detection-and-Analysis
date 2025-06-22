@@ -88,22 +88,6 @@ It checks 20 consecutive frames and if the Eye Aspect ratio is less than 0.25, A
 
 
 
-flowchart LR
-    A[Webcam Feed] --> B[Face Detection (MediaPipe)]
-    B --> C[EAR Computation]
-    C -->|EAR < Threshold| D[Trigger Alarm]
-    C -->|EAR >= Threshold| E[Normal State]
-
-    D --> F[Capture Images]
-    D --> G[Log Event (Timestamp, EAR)]
-    F --> H[image_clippings Directory]
-    G --> I[drowsiness_log.csv]
-
-    I --> J[Analyze.py (Trend Generation)]
-    H --> J
-    J --> K[drowsiness_trends Output]
-
-
 🐉 Execution
 To run the code, make sure you have activated the virtual environment and installed the required dependencies. Then run the following command:
 
