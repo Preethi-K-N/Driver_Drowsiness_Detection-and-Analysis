@@ -11,7 +11,7 @@ Please ensure you have the following:
 •	Python 3.9 or later
 •	A working virtual environment (venv) for isolation
 
- ##🔍 Problem Statement
+ 🔍 Problem Statement
 
 Fatigue while driving is one of the major causes of road accidents. Human monitoring isn't reliable, especially for long hours of travel. This system provides a real-time alert mechanism when drowsiness is detected using the **Eye Aspect Ratio (EAR)** method and helps prevent accidents proactively.
 
@@ -55,6 +55,37 @@ It checks 20 consecutive frames and if the Eye Aspect ratio is less than 0.25, A
 ![image](https://github.com/user-attachments/assets/fcee91f5-efc8-4d08-b6c8-ec621e74b518)
 ![image](https://github.com/user-attachments/assets/0cc55a1a-4f92-40e4-8e3e-1a3bd5e05845)
 
+🗺️ Architecture Diagram
+
+                        +------------------+
+                        |     Webcam       |
+                        +--------+---------+
+                                 |
+                                 v
+                      +----------------------+
+                      |  MediaPipe Face Mesh |
+                      | (Eye landmark detect)|
+                      +----------------------+
+                                 |
+                                 v
+                      +----------------------+
+                      | EAR Calculation      |
+                      | (Eye Aspect Ratio)   |
+                      +----------------------+
+                                 |
+                      EAR < Threshold for N frames
+                                 |
+                                 v
+                      +---------------------+           +-----------------+
+                      | Alert Trigger       |----->     |  Save Images    |
+                      | (Alarm Sound, Logs) |           +-----------------+
+                      +---------------------+          
+                                 |
+                                 v
+                      +---------------------+          +-----------------+
+                      |  Analysis Scripts   | ----->   |  Trends & Plots |
+                      +---------------------+          +-----------------+
+
 
 
 🐉 Execution
@@ -65,10 +96,10 @@ python detector.py
 
  💼 Applications
   	👁️ Driver Monitoring Systems
-  	🚚 Fleet & Commercial Vehicles
-  	🚗 Personal Vehicles & Rideshare Services
-  	🏍️ Motorcycles & Delivery Services
-  	🏁 Automotive R&D and Smart Vehicles
+   🚚 Fleet & Commercial Vehicles
+   🚗 Personal Vehicles & Rideshare Services
+   🏍️ Motorcycles & Delivery Services
+   🏁 Automotive R&D and Smart Vehicles
   	🚔 Law Enforcement & Road Safety
  	👥 Driver Training Programs
   	🌍 Smart Cities & Public Transport
