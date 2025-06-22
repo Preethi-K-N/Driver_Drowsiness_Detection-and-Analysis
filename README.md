@@ -5,13 +5,13 @@ A real-time computer vision project that monitors eye movement using webcam feed
 > 🚗 **Use Case**: Designed for drivers, long-distance riders, and commercial vehicle operators where fatigue could lead to accidents.  
 > 🧠 **Technologies**: OpenCV, MediaPipe, Pandas, Matplotlib, NumPy, SciPy
 
-##🦄 Code Requirements 
+🦄 Code Requirements 
 The example code is implemented in Python 3.9 or higher and may not be compatible with older versions.
 Please ensure you have the following:
 •	Python 3.9 or later
 •	A working virtual environment (venv) for isolation
 
- 🔍 Problem Statement
+ ##🔍 Problem Statement
 
 Fatigue while driving is one of the major causes of road accidents. Human monitoring isn't reliable, especially for long hours of travel. This system provides a real-time alert mechanism when drowsiness is detected using the **Eye Aspect Ratio (EAR)** method and helps prevent accidents proactively.
 
