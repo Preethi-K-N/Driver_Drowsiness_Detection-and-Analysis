@@ -88,32 +88,44 @@ It checks 20 consecutive frames and if the Eye Aspect ratio is less than 0.25, A
 
 
 
+flowchart LR
+    A[Webcam Feed] --> B[Face Detection (MediaPipe)]
+    B --> C[EAR Computation]
+    C -->|EAR < Threshold| D[Trigger Alarm]
+    C -->|EAR >= Threshold| E[Normal State]
+
+    D --> F[Capture Images]
+    D --> G[Log Event (Timestamp, EAR)]
+    F --> H[image_clippings Directory]
+    G --> I[drowsiness_log.csv]
+
+    I --> J[Analyze.py (Trend Generation)]
+    H --> J
+    J --> K[drowsiness_trends Output]
+
+
 🐉 Execution
 To run the code, make sure you have activated the virtual environment and installed the required dependencies. Then run the following command:
 
-  python detector.py
+
+```bash
+python Drowsiness_Detection.py
+```
 
 
- 💼 Applications
-  	👁️ Driver Monitoring Systems
-   🚚 Fleet & Commercial Vehicles
-   🚗 Personal Vehicles & Rideshare Services
-   🏍️ Motorcycles & Delivery Services
-   🏁 Automotive R&D and Smart Vehicles
-  	🚔 Law Enforcement & Road Safety
- 	👥 Driver Training Programs
-  	🌍 Smart Cities & Public Transport
+📌 Cite Us
 
- 📌 Cite Us
+To cite this project, use the following format:
 
-Here's how to cite the project:
--@article{Driver_Drowsiness_Detection and Analysis,
--author = {Preethi K.N},
--journal = {https://github.com/preethikn/driver-drowsiness-detection},
--month = {06},
--title = {Driver Drowsiness Detection using EAR and Analysis},
--year = {2025}
+```bibtex
+@article{Driver_Drowsiness_Detection_and_Analysis,
+  author  = {Preethi K.N},
+  journal = {https://github.com/preethikn/driver-drowsiness-detection},
+  month   = {06},
+  title   = {Driver Drowsiness Detection using EAR and Analysis},
+  year    = {2025}
 }
+```
 
 ## 📚 References
 
