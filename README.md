@@ -5,7 +5,7 @@ A real-time computer vision project that monitors eye movement using webcam feed
 > 🚗 **Use Case**: Designed for drivers, long-distance riders, and commercial vehicle operators where fatigue could lead to accidents.  
 > 🧠 **Technologies**: OpenCV, MediaPipe, Pandas, Matplotlib, NumPy, SciPy
 
-🦄 Code Requirements 
+##🦄 Code Requirements 
 The example code is implemented in Python 3.9 or higher and may not be compatible with older versions.
 Please ensure you have the following:
 •	Python 3.9 or later
