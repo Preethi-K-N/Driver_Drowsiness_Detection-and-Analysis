@@ -91,7 +91,7 @@ It checks 20 consecutive frames and if the Eye Aspect ratio is less than 0.25, A
 🐉 Execution
 To run the code, make sure you have activated the virtual environment and installed the required dependencies. Then run the following command:
 
-python detector.py
+  python detector.py
 
 
  💼 Applications
@@ -107,12 +107,12 @@ python detector.py
  📌 Cite Us
 
 Here's how to cite the project:
-@article{Driver_Drowsiness_Detection and Analysis,
-author = {Preethi K.N},
-journal = {https://github.com/preethikn/driver-drowsiness-detection},
-month = {06},
-title = {Driver Drowsiness Detection using EAR and Analysis},
-year = {2025}
+-@article{Driver_Drowsiness_Detection and Analysis,
+-author = {Preethi K.N},
+-journal = {https://github.com/preethikn/driver-drowsiness-detection},
+-month = {06},
+-title = {Driver Drowsiness Detection using EAR and Analysis},
+-year = {2025}
 }
 
 ## 📚 References
