@@ -55,38 +55,6 @@ It checks 20 consecutive frames and if the Eye Aspect ratio is less than 0.25, A
 ![image](https://github.com/user-attachments/assets/fcee91f5-efc8-4d08-b6c8-ec621e74b518)
 ![image](https://github.com/user-attachments/assets/0cc55a1a-4f92-40e4-8e3e-1a3bd5e05845)
 
-🗺️ Architecture Diagram
-
-                        +------------------+
-                        |     Webcam       |
-                        +--------+---------+
-                                 |
-                                 v
-                      +----------------------+
-                      |  MediaPipe Face Mesh |
-                      | (Eye landmark detect)|
-                      +----------------------+
-                                 |
-                                 v
-                      +----------------------+
-                      | EAR Calculation      |
-                      | (Eye Aspect Ratio)   |
-                      +----------------------+
-                                 |
-                      EAR < Threshold for N frames
-                                 |
-                                 v
-                      +---------------------+           +-----------------+
-                      | Alert Trigger       |----->     |  Save Images    |
-                      | (Alarm Sound, Logs) |           +-----------------+
-                      +---------------------+          
-                                 |
-                                 v
-                      +---------------------+          +-----------------+
-                      |  Analysis Scripts   | ----->   |  Trends & Plots |
-                      +---------------------+          +-----------------+
-
-
 
 🐉 Execution
 To run the code, make sure you have activated the virtual environment and installed the required dependencies. Then run the following command:
