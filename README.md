@@ -5,15 +5,21 @@ A real-time computer vision project that monitors eye movement using webcam feed
 > 🚗 **Use Case**: Designed for drivers, long-distance riders, and commercial vehicle operators where fatigue could lead to accidents.  
 > 🧠 **Technologies**: OpenCV, MediaPipe, Pandas, Matplotlib, NumPy, SciPy
 
+---
+
 🦄 Code Requirements 
 The example code is implemented in Python 3.9 or higher and may not be compatible with older versions.
 Please ensure you have the following:
 •	Python 3.9 or later
 •	A working virtual environment (venv) for isolation
 
+---
+
  🔍 Problem Statement
 
 Fatigue while driving is one of the major causes of road accidents. Human monitoring isn't reliable, especially for long hours of travel. This system provides a real-time alert mechanism when drowsiness is detected using the **Eye Aspect Ratio (EAR)** method and helps prevent accidents proactively.
+
+---
 
  🎯 Key Features
 
@@ -24,16 +30,19 @@ Fatigue while driving is one of the major causes of road accidents. Human monito
 - 📅 **Supports daily/hourly/weekly analysis**
 - ✅ Easy-to-use Python interface
 
+---
+
  🛠️ Tech Stack
  
-Python 3.x	 - Programming Language
-OpenCV    	 - Image processing and webcam capture
-MediaPipe	  - Face and eye landmark detection
-SciPy       - Eye Aspect Ratio calculation
-Pandas	     - Logging and trend analytics
-Matplotlib	 - Plotting and visualization
-SimpleAudio - 	Alarm playback
+- Python 3.x	 - Programming Language
+- OpenCV    	 - Image processing and webcam capture
+- MediaPipe	  - Face and eye landmark detection
+- SciPy       - Eye Aspect Ratio calculation
+- Pandas	     - Logging and trend analytics
+- Matplotlib	 - Plotting and visualization
+- SimpleAudio - 	Alarm playback
 
+---
 
  📌 How It Works
 
@@ -43,10 +52,14 @@ SimpleAudio - 	Alarm playback
 - A warning message is shown, an alarm sounds, and 3 images are saved
 - Data is logged for later analysis
 
+---
+
 👨‍🔬 Algorithm 
 
 Each eye is represented by 6 (x, y)-coordinates, starting at the left-corner of the eye (as if you were looking at the person), and then working clockwise around the eye.
-It checks 20 consecutive frames and if the Eye Aspect ratio is less than 0.25, Alert is generated.
+It checks 20 consecutive frames and if the Eye Aspect ratio is less than 0.30, Alert is generated.
+
+---
 
  👁 Eye Aspect Ratio Formula
 
@@ -55,6 +68,7 @@ It checks 20 consecutive frames and if the Eye Aspect ratio is less than 0.25, A
 ![image](https://github.com/user-attachments/assets/fcee91f5-efc8-4d08-b6c8-ec621e74b518)
 ![image](https://github.com/user-attachments/assets/0cc55a1a-4f92-40e4-8e3e-1a3bd5e05845)
 
+---
 
 🐉 Execution
 To run the code, make sure you have activated the virtual environment and installed the required dependencies. Then run the following command:
