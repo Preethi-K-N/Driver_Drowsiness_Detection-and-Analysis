@@ -78,6 +78,7 @@ To run the code, make sure you have activated the virtual environment and instal
 python Drowsiness_Detection.py
 ```
 
+---
 
 📌 Cite Us
 
@@ -92,6 +93,8 @@ To cite this project, use the following format:
   year    = {2025}
 }
 ```
+
+---
 
 ## 📚 References
 
