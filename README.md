@@ -11,8 +11,8 @@ A real-time computer vision project that monitors eye movement using webcam feed
 
 The example code is implemented in Python 3.9 or higher and may not be compatible with older versions.
 Please ensure you have the following:
-- •	Python 3.9 or later
-- •	A working virtual environment (venv) for isolation
+- Python 3.9 or later
+- A working virtual environment (venv) for isolation
 
 ---
 
