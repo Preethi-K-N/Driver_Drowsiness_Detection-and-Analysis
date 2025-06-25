@@ -76,7 +76,7 @@ To run the code, make sure you have activated the virtual environment and instal
 
 
 ```bash
-python Drowsiness_Detection.py
+python detection.py
 ```
 
 ---
