@@ -1,104 +1,109 @@
 💤 Driver Drowsiness Detection System
 
-A real-time computer vision project that monitors eye movement using webcam feed and alerts users when signs of drowsiness are detected.
+A real-time computer vision project that monitors eye and mouth movement using a webcam feed, providing alerts when signs of drowsiness are detected. It also captures image evidence and visualizes drowsiness patterns over time.
 
-> 🚗 **Use Case**: Designed for drivers, long-distance riders, and commercial vehicle operators where fatigue could lead to accidents.  
-> 🧠 **Technologies**: OpenCV, MediaPipe, Pandas, Matplotlib, NumPy, SciPy
+🚗 **Use Case**: Designed for drivers, long-distance riders, and commercial vehicle operators where fatigue could lead to accidents.
+
+🧠 **Technologies**: OpenCV, Face Alignment (instead of MediaPipe), Pandas, Matplotlib, NumPy, SciPy, Pygame
 
 ---
 
-🦄 Code Requirements 
-
-The example code is implemented in Python 3.9 or higher and may not be compatible with older versions.
-Please ensure you have the following:
+🦄 **Code Requirements**
 - Python 3.9 or later
-- A working virtual environment (venv) for isolation
+- A working virtual environment (`venv`) for isolation
+- Required libraries: `opencv-python`, `numpy`, `pygame`, `scipy`, `face-alignment`, `pandas`, `matplotlib`
 
 ---
 
- 🔍 Problem Statement
-
-Fatigue while driving is one of the major causes of road accidents. Human monitoring isn't reliable, especially for long hours of travel. This system provides a real-time alert mechanism when drowsiness is detected using the **Eye Aspect Ratio (EAR)** method and helps prevent accidents proactively.
-
----
-
- 🎯 Key Features
-
-- 🔄 **Real-time webcam-based monitoring**
-- 🚨 **Audio alert** when drowsiness is detected
-- 🖼️ **Saves image clippings** upon detection
-- 📊 **Analyzes drowsiness patterns** with visual trends
-- 📅 **Supports daily/hourly/weekly analysis**
-- ✅ Easy-to-use Python interface
+🔍 **Problem Statement**
+Fatigue while driving is one of the major causes of road accidents. Human monitoring isn't reliable for long hours of travel. This system provides a real-time alert mechanism when drowsiness is detected using Eye Aspect Ratio (EAR) and Mouth Aspect Ratio (MAR) calculations, helping prevent accidents proactively.
 
 ---
 
- 🛠️ Tech Stack
- 
-- Python 3.x	 - Programming Language
-- OpenCV    	 - Image processing and webcam capture
-- MediaPipe	  - Face and eye landmark detection
-- SciPy       - Eye Aspect Ratio calculation
-- Pandas	     - Logging and trend analytics
-- Matplotlib	 - Plotting and visualization
-- SimpleAudio - 	Alarm playback
+🎯 **Key Features**
+
+- 🔄 Real-time webcam-based monitoring
+- 👁 EAR and 👄 MAR-based fatigue detection
+- 🚨 Audio alarm when drowsiness is detected
+- 🖼️ Saves 3 image clippings per alert
+- 📊 Analyzes and plots drowsiness trends by day and hour
+- ✅ Clean and beginner-friendly Python interface
 
 ---
 
- 📌 How It Works
+🛠️ **Tech Stack**
+- **Python 3.x** - Programming Language
+- **OpenCV** - Image processing and webcam capture
+- **face_alignment** - 2D facial landmarks extraction
+- **SciPy** - EAR and MAR calculation
+- **Pygame** - Alarm playback
+- **Pandas** - Logging and analysis
+- **Matplotlib** - Data visualization
 
-- Media Pipe detects facial landmarks
+---
+
+📌 **How It Works**
+- `face_alignment` detects 68 facial landmarks
 - EAR (Eye Aspect Ratio) is calculated from eye landmarks
-- If EAR < 0.25 for 48 consecutive frames, it is considered drowsiness
-- A warning message is shown, an alarm sounds, and 3 images are saved
-- Data is logged for later analysis
+- MAR (Mouth Aspect Ratio) is calculated from mouth landmarks
+- If EAR < 0.30 or MAR > 0.65 for 10 consecutive frames → Drowsiness Detected
+- Alarm plays, and 3 real-time images are saved in a folder (with timestamps)
+- Later, `analyze.py` is used to visualize the daily and hourly drowsiness trends
 
 ---
 
-👨‍🔬 Algorithm 
+👨‍🔬 **Algorithm Overview**
 
-Each eye is represented by 6 (x, y)-coordinates, starting at the left-corner of the eye (as if you were looking at the person), and then working clockwise around the eye.
-It checks 20 consecutive frames and if the Eye Aspect ratio is less than 0.30, Alert is generated.
-
----
-
- 👁 Eye Aspect Ratio Formula
-
- 
-![image](https://github.com/user-attachments/assets/21b619a9-56e9-47f6-bc3b-f5003fd84880)
-![image](https://github.com/user-attachments/assets/fcee91f5-efc8-4d08-b6c8-ec621e74b518)
-![image](https://github.com/user-attachments/assets/0cc55a1a-4f92-40e4-8e3e-1a3bd5e05845)
+- EAR is calculated from 6 eye landmarks: 
+  \[ EAR = (||p2 − p6|| + ||p3 − p5||) / (2 * ||p1 − p4||) \]
+- MAR is calculated from 10 mouth landmarks
+- Thresholding applied to trigger drowsiness alert
 
 ---
 
-🐉 Execution
-To run the code, make sure you have activated the virtual environment and installed the required dependencies. Then run the following command:
+🐉 **Execution Steps**
 
-
+1. **Run Detection (Real-Time Alert + Image Capture)**
 ```bash
-python detection.py
+python detector.py
+```
+2. **Run Analysis (Trends Visualization)**
+```bash
+python analyze.py
+```
+> Make sure all images are stored in the `image_clippings` folder as expected.
+
+---
+
+🗂 **Folder Structure**
+```
+Driver Drowsiness Detection
+│
+├── detector.py             # Real-time detection
+├── analyze.py              # Analysis and plotting
+├── alarm.wav               # Alarm sound file
+├── image_clippings/        # Automatically created folders with saved alert images
+├── drowsiness_trends/      # Folder for saving plots
+├── README.md               # This file
+└── ...
 ```
 
 ---
 
-📌 Cite Us
-
-To cite this project, use the following format:
-
+📌 **Citation**
 ```bibtex
 @article{Driver_Drowsiness_Detection_and_Analysis,
   author  = {Preethi K.N},
-  journal = {https://github.com/preethikn/driver-drowsiness-detection},
-  month   = {06},
-  title   = {Driver Drowsiness Detection using EAR and Analysis},
+  journal = {https://github.com/preethikn/Driver_Drowsiness_Detection-and-Analysis},
+  month   = {07},
+  title   = {Driver Drowsiness Detection using EAR, MAR and Analysis},
   year    = {2025}
 }
 ```
 
 ---
 
-## 📚 References
-
-- [MediaPipe by Google](https://google.github.io/mediapipe/)
-- [PyImageSearch Blog by Adrian Rosebrock](https://pyimagesearch.com)
-- EAR methodology inspired by Tereza Soukupova and Jan Cech’s work on eye blink detection
+📚 **References**
+- [Face Alignment Library](https://github.com/1adrianb/face-alignment)
+- [EAR method: Soukupová & Čech - Real-Time Eye Blink Detection](https://vision.fe.uni-lj.si/cvww2016/proceedings/papers/05.pdf)
+- [PyImageSearch: Facial Landmarks & Drowsiness Detection](https://pyimagesearch.com/)
