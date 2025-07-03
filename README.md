@@ -52,14 +52,43 @@ Fatigue while driving is one of the major causes of road accidents. Human monito
 - Later, `analyze.py` is used to visualize the daily and hourly drowsiness trends
 
 ---
+👨‍🔬 Algorithm Overview
+This system uses facial landmarks to monitor drowsiness based on eye and mouth movements.
 
-👨‍🔬 **Algorithm Overview**
+👁️ Eye Aspect Ratio (EAR)
+Detects eye closure using 6 key landmarks around each eye.
 
-- EAR is calculated from 6 eye landmarks: 
-  \[ EAR = (||p2 − p6|| + ||p3 − p5||) / (2 * ||p1 − p4||) \]
-- MAR is calculated from 10 mouth landmarks
-- Thresholding applied to trigger drowsiness alert
+Formula:
 
+ini
+Copy
+Edit
+EAR = (‖p2 - p6‖ + ‖p3 - p5‖) / (2 × ‖p1 - p4‖)
+EAR drops when eyes close.
+
+If EAR < 0.30 for several consecutive frames → Drowsiness Detected
+
+👄 Mouth Aspect Ratio (MAR)
+Detects yawning using 8–10 mouth landmarks.
+
+Formula:
+
+ini
+Copy
+Edit
+MAR = ‖p63 - p67‖ / ‖p61 - p65‖
+MAR rises when mouth opens wide.
+
+If MAR > 0.65 → Yawning Detected
+
+🔔 Alert Trigger
+When EAR < 0.30 or MAR > 0.65 for 10+ consecutive frames:
+
+📢 Alarm is played
+
+📸 3 images are saved
+
+⚠️ Drowsiness warning is shown
 ---
 
 🐉 **Execution Steps**
