@@ -1,36 +1,32 @@
-
+# === detector.py ===
 import cv2
-import mediapipe as mp
 import numpy as np
 import os
 import datetime
 from scipy.spatial import distance as dist
-import simpleaudio as sa
+import pygame
+import face_alignment
 
 # ==== CONFIGURATION ====
 EAR_THRESHOLD = 0.30
-CONSEC_FRAMES = 38
-IMAGE_FOLDER = "image_clippings"
+MAR_THRESHOLD = 0.65
+CONSEC_FRAMES = 10
+NUM_IMAGES = 3
+IMAGE_FOLDER = r"D:\Preethi\OneDrive\Desktop\GIT Files\Driver Drowsiness Detection\image_clippings"
 ALARM_FILE = "alarm.wav"
-NUM_IMAGES = 3  # Capture this many images per alert
 
 # ==== PREPARE ====
 os.makedirs(IMAGE_FOLDER, exist_ok=True)
+pygame.mixer.init()
+if not pygame.mixer.get_init():
+    print("⚠️ Pygame mixer failed to initialize!")
+pygame.mixer.music.load(ALARM_FILE)
 
-# Load alarm sound
-wave_obj = sa.WaveObject.from_wave_file(ALARM_FILE)
+fa = face_alignment.FaceAlignment('2D', flip_input=False, device='cpu')
 
-# Prepare face mesh detector
-mp_face_mesh = mp.solutions.face_mesh.FaceMesh(
-    max_num_faces=1,
-    refine_landmarks=True,
-    min_detection_confidence=0.5
-)
-
-# Capture
-cap = cv2.VideoCapture(0)
-counter = 0
-print("✅ Starting drowsiness detection...")
+LEFT_EYE = [36, 37, 38, 39, 40, 41]
+RIGHT_EYE = [42, 43, 44, 45, 46, 47]
+MOUTH = [60, 64, 62, 66, 63, 65, 61, 67, 59, 55]
 
 def eye_aspect_ratio(eye):
     A = dist.euclidean(eye[1], eye[5])
@@ -38,58 +34,77 @@ def eye_aspect_ratio(eye):
     C = dist.euclidean(eye[0], eye[3])
     return (A + B) / (2.0 * C)
 
+def mouth_aspect_ratio(mouth):
+    A = dist.euclidean(mouth[2], mouth[3])
+    B = dist.euclidean(mouth[0], mouth[1])
+    return A / B
+
+cap = cv2.VideoCapture(0)
+counter = 0
+alarm_on = False
+
+print("✅ Drowsiness detection started... Press 'q' or 'Esc' to quit.")
+
 try:
     while True:
         ret, frame = cap.read()
         if not ret:
             break
+
         rgb = cv2.cvtColor(frame, cv2.COLOR_BGR2RGB)
-        results = mp_face_mesh.process(rgb)
+        landmarks = fa.get_landmarks_from_image(rgb)
 
-        if results.multi_face_landmarks:
-            landmarks = results.multi_face_landmarks[0].landmark
-            h, w = frame.shape[:2]
+        if landmarks is None:
+            print("😕 No face detected.")
+            continue
 
-            left_eye_idx = [362, 385, 387, 263, 373, 380]
-            right_eye_idx = [33, 160, 158, 133, 153, 144]
+        shape = landmarks[0]
+        left_eye = np.array([shape[i] for i in LEFT_EYE])
+        right_eye = np.array([shape[i] for i in RIGHT_EYE])
+        mouth = np.array([shape[i] for i in MOUTH])
 
-            left_eye = np.array([[int(landmarks[i].x*w), int(landmarks[i].y*h)] for i in left_eye_idx])
-            right_eye = np.array([[int(landmarks[i].x*w), int(landmarks[i].y*h)] for i in right_eye_idx])
-            left_ear = eye_aspect_ratio(left_eye)
-            right_ear = eye_aspect_ratio(right_eye)
-            ear = (left_ear + right_ear) / 2.0
+        ear = (eye_aspect_ratio(left_eye) + eye_aspect_ratio(right_eye)) / 2.0
+        mar = mouth_aspect_ratio(mouth)
 
-            if ear < EAR_THRESHOLD:
-                counter += 1
-                if counter >= CONSEC_FRAMES:
-                    # Trigger alert
-                    timestamp = datetime.datetime.now().strftime("%Y%m%d_%H%M%S")
-                    date_folder = datetime.datetime.now().strftime("%Y-%m-%d")
-                    date_folder_path = os.path.join(IMAGE_FOLDER, date_folder)
-                    os.makedirs(date_folder_path, exist_ok=True)
+        if ear < EAR_THRESHOLD or mar > MAR_THRESHOLD:
+            counter += 1
+            if counter >= CONSEC_FRAMES:
+                if not alarm_on:
+                    alarm_on = True
+                    pygame.mixer.music.play(-1)
+                    print("🔔 Alarm should be playing now.")
 
-                    for i in range(NUM_IMAGES):
-                        img_name = f"{timestamp}_{i+1}.jpg"
-                        img_path = os.path.join(date_folder_path, img_name)
-                        cv2.imwrite(img_path, frame)
-                        wave_obj.play()
-                        cv2.putText(
-                            frame, f"DROWSINESS ALERT! Saved {i+1}/{NUM_IMAGES}",
-                            (50, 50), cv2.FONT_HERSHEY_SIMPLEX, 1, (0, 0, 255), 2
-                        )
-                        cv2.imshow('Driver Drowsiness Detection', frame)
-                        cv2.waitKey(200)  # brief wait between captures
+                timestamp = datetime.datetime.now().strftime("%Y%m%d_%H%M%S")
+                folder = datetime.datetime.now().strftime("%Y-%m-%d")
+                path = os.path.join(IMAGE_FOLDER, folder)
+                os.makedirs(path, exist_ok=True)
 
-                    counter = 0  # reset counter after capturing images
-            else:
+                for i in range(NUM_IMAGES):
+                    filename = f"{timestamp}_{i+1}.jpg"
+                    cv2.imwrite(os.path.join(path, filename), frame)
+                    cv2.putText(frame, f"DROWSINESS ALERT! Saved {i+1}/{NUM_IMAGES}",
+                                (10, 30), cv2.FONT_HERSHEY_SIMPLEX, 0.7, (0, 0, 255), 2)
+                    cv2.imshow("Driver Drowsiness Detection", frame)
+                    cv2.waitKey(200)
                 counter = 0
+        else:
+            counter = 0
+            if alarm_on:
+                pygame.mixer.music.stop()
+                alarm_on = False
 
-        cv2.imshow('Driver Drowsiness Detection', frame)
-        if cv2.waitKey(1) & 0xFF == ord('q'):
-            print("❌ Quitting...")
+        cv2.putText(frame, "Press 'Q' or 'Esc' to quit", (10, frame.shape[0] - 10),
+                    cv2.FONT_HERSHEY_SIMPLEX, 0.5, (255, 255, 255), 1)
+        cv2.imshow("Driver Drowsiness Detection", frame)
+        key = cv2.waitKey(1) & 0xFF
+        if key == ord('q') or key == 27:
+            print("❌ Stopped.")
             break
+
 except Exception as e:
-    print("Error:", e)
+    print("⚠️ Error:", e)
+
 finally:
     cap.release()
     cv2.destroyAllWindows()
+    pygame.mixer.quit()
