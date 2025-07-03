@@ -16,6 +16,7 @@ A real-time computer vision project that monitors eye and mouth movement using a
 ---
 
 🔍 **Problem Statement**
+
 Fatigue while driving is one of the major causes of road accidents. Human monitoring isn't reliable for long hours of travel. This system provides a real-time alert mechanism when drowsiness is detected using Eye Aspect Ratio (EAR) and Mouth Aspect Ratio (MAR) calculations, helping prevent accidents proactively.
 
 ---
