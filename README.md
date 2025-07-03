@@ -8,20 +8,20 @@ A real-time computer vision project that monitors eye and mouth movement using a
 
 ---
 
-## 🦄 **Code Requirements**
+## 🦄 _**Code Requirements**_
 - Python 3.9 or later
 - A working virtual environment (`venv`) for isolation
 - Required libraries: `opencv-python`, `numpy`, `pygame`, `scipy`, `face-alignment`, `pandas`, `matplotlib`
 
 ---
 
-## 🔍 **Problem Statement**
+## 🔍 _**Problem Statement**_
 
 Fatigue while driving is one of the major causes of road accidents. Human monitoring isn't reliable for long hours of travel. This system provides a real-time alert mechanism when drowsiness is detected using Eye Aspect Ratio (EAR) and Mouth Aspect Ratio (MAR) calculations, helping prevent accidents proactively.
 
 ---
 
-## 🎯 **Key Features**
+## 🎯 _**Key Features**_
 
 - 🔄 Real-time webcam-based monitoring
 - 👁 EAR and 👄 MAR-based fatigue detection
@@ -32,7 +32,7 @@ Fatigue while driving is one of the major causes of road accidents. Human monito
 
 ---
 
-## 🛠️ **Tech Stack**
+## 🛠️ _**Tech Stack**_
 - **Python 3.x** - Programming Language
 - **OpenCV** - Image processing and webcam capture
 - **face_alignment** - 2D facial landmarks extraction
@@ -43,7 +43,7 @@ Fatigue while driving is one of the major causes of road accidents. Human monito
 
 ---
 
-## 📌 **How It Works**
+## 📌 _**How It Works**_
 - `face_alignment` detects 68 facial landmarks
 - EAR (Eye Aspect Ratio) is calculated from eye landmarks
 - MAR (Mouth Aspect Ratio) is calculated from mouth landmarks
@@ -53,10 +53,10 @@ Fatigue while driving is one of the major causes of road accidents. Human monito
 
 ---
 
-## 👨‍🔬 **Algorithm Overview**
+## 👨‍🔬 _**Algorithm Overview**_
 This system uses facial landmarks to monitor drowsiness based on eye and mouth movements.
 
-### 👁️ Eye Aspect Ratio (EAR)
+### 👁️ _Eye Aspect Ratio (EAR)_
 Detects eye closure using 6 key landmarks around each eye.
 
 **Formula:**
@@ -68,7 +68,7 @@ EAR drops when eyes close.
 **Threshold:**
 - If EAR < 0.30 for several consecutive frames → **Drowsiness Detected**
 
-### 👄 Mouth Aspect Ratio (MAR)
+### 👄 _Mouth Aspect Ratio (MAR)_
 Detects yawning using 8–10 mouth landmarks.
 
 **Formula:**
@@ -80,7 +80,7 @@ MAR increases when mouth opens wide.
 **Threshold:**
 - If MAR > 0.65 → **Yawning Detected**
 
-### 🔔 Alert Trigger
+### 🔔 _Alert Trigger_
 When EAR < 0.30 or MAR > 0.65 for 10+ consecutive frames:
 
 - 📢 Alarm is played
@@ -89,7 +89,7 @@ When EAR < 0.30 or MAR > 0.65 for 10+ consecutive frames:
 
 ---
 
-## 🐉 **Execution Steps**
+## 🐉 _**Execution Steps**_
 
 1. **Run Detection (Real-Time Alert + Image Capture)**
 ```bash
@@ -103,7 +103,7 @@ python analyze.py
 
 ---
 
-## 🗂 **Folder Structure**
+## 🗂 _**Folder Structure**_
 ```
 Driver Drowsiness Detection
 │
@@ -118,7 +118,7 @@ Driver Drowsiness Detection
 
 ---
 
-## 📌 **Citation**
+## 📌 _**Citation**_
 ```bibtex
 @article{Driver_Drowsiness_Detection_and_Analysis,
   author  = {Preethi K.N},
@@ -131,7 +131,7 @@ Driver Drowsiness Detection
 
 ---
 
-## 📚 **References**
+## 📚 _**References**_
 - [Face Alignment Library](https://github.com/1adrianb/face-alignment)
 - [EAR method: Soukupová & Čech - Real-Time Eye Blink Detection](https://vision.fe.uni-lj.si/cvww2016/proceedings/papers/05.pdf)
 - [PyImageSearch: Facial Landmarks & Drowsiness Detection](https://pyimagesearch.com/)
