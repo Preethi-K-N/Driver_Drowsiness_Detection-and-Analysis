@@ -6,6 +6,8 @@ A real-time, computer vision-based system that detects drowsiness by analyzing e
 ---
 
 ## 🏗️ _**Architecture Diagram**_
+
+```plaintext
                     +------------------+
                     |     Webcam       |
                     +--------+---------+
@@ -42,6 +44,7 @@ A real-time, computer vision-based system that detects drowsiness by analyzing e
             | Daily/Hourly Trend Plots    |
             +-----------------------------+
 
+```
 
 ---
 
