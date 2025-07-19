@@ -56,7 +56,7 @@ Fatigue while driving is one of the major causes of road accidents. Human monito
 ## 👨‍🔬 _**Algorithm Overview**_
 This system uses facial landmarks to monitor drowsiness based on eye and mouth movements.
 
-### 👁️ Eye and 👄 Mouth Landmark Mapping
+### 👁️ _**Eye and 👄 Mouth Landmark Mapping**_
 
 <img width="685" height="230" alt="ddd2" src="https://github.com/user-attachments/assets/d4b176e8-2878-4e50-9928-5087b5fcf876" />
 
