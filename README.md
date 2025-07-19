@@ -58,8 +58,8 @@ This system uses facial landmarks to monitor drowsiness based on eye and mouth m
 
 ### 👁️ Eye and 👄 Mouth Landmark Mapping
 
-![Landmark Diagrams](<img width="685" height="230" alt="ddd2" src="https://github.com/user-attachments/assets/d5efcd4f-fb9e-4638-a30b-61219273fb92" />
-)
+<img width="685" height="230" alt="ddd2" src="https://github.com/user-attachments/assets/d4b176e8-2878-4e50-9928-5087b5fcf876" />
+
 
 ### 👁️ _Eye Aspect Ratio (EAR)_
 Detects eye closure using 6 key landmarks around each eye.
