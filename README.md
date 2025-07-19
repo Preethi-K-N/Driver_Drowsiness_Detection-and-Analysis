@@ -1,5 +1,8 @@
 # 💤 Driver Drowsiness Detection System
 
+<img width="2648" height="1536" alt="Gemini_Generated_Image_ng0zv6ng0zv6ng0z" src="https://github.com/user-attachments/assets/168cd2e6-b49f-4b0f-bbd7-ff7e38893a00" />
+
+
 A real-time computer vision project that monitors eye and mouth movement using a webcam feed, providing alerts when signs of drowsiness are detected. It also captures image evidence and visualizes drowsiness patterns over time.
 
 🚗 **Use Case**: Designed for drivers, long-distance riders, and commercial vehicle operators where fatigue could lead to accidents.
