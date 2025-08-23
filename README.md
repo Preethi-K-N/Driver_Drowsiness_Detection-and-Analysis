@@ -7,7 +7,14 @@ A real-time computer vision project that monitors eye and mouth movement using a
 
 🚗 **Use Case**: Designed for drivers, long-distance riders, and commercial vehicle operators where fatigue could lead to accidents.
 
-🧠 **Technologies**: OpenCV, Face Alignment (instead of MediaPipe), Pandas, Matplotlib, NumPy, SciPy, Pygame
+🧠 **Technologies**: 
+![OpenCV](https://img.shields.io/badge/OpenCV-4.x-blue.svg)
+![Face Alignment](https://img.shields.io/badge/Face_Alignment-1.x-orange.svg)
+![Pandas](https://img.shields.io/badge/Pandas-2.x-green.svg)
+![Matplotlib](https://img.shields.io/badge/Matplotlib-3.x-purple.svg)
+![NumPy](https://img.shields.io/badge/NumPy-1.x-yellow.svg)
+![SciPy](https://img.shields.io/badge/SciPy-1.x-brightgreen.svg)
+![Pygame](https://img.shields.io/badge/Pygame-2.x-red.svg)
 
 ---
 
