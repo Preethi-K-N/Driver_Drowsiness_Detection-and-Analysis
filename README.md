@@ -127,6 +127,7 @@ Driver Drowsiness Detection
 ├── alarm.wav               # Alarm sound file
 ├── image_clippings/        # Automatically created folders with saved alert images
 ├── drowsiness_trends/      # Folder for saving plots
+├── architecture.md         # System architecture diagram and details
 ├── README.md               # This file
 └── ...
 ```
